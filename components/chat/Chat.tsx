@@ -35,8 +35,8 @@ export function Chat() {
       </div>
       <p className="mt-3 text-sm leading-relaxed text-muted">
         An AI assistant that answers questions about Tom&apos;s experience,
-        grounded in content he has written. It can make mistakes — for anything
-        important, contact{" "}
+        grounded in content he has written. It can make mistakes, so for
+        anything important, contact{" "}
         <a href={`mailto:${site.email}`} className="text-accent hover:underline">
           {site.email}
         </a>
@@ -67,7 +67,7 @@ export function Chat() {
         )}
         {limitReached && (
           <p className="border-t border-border px-4 py-3 text-sm text-muted">
-            That&apos;s the limit for one session — for anything else, email{" "}
+            That&apos;s the limit for one session. For anything else, email{" "}
             <a href={`mailto:${site.email}`} className="text-accent hover:underline">
               {site.email}
             </a>

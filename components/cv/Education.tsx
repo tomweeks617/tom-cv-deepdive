@@ -18,7 +18,7 @@ export function Education() {
               </p>
               <p className="text-[15px] text-foreground">
                 {entry.qualification}{" "}
-                <span className="text-muted">— {entry.detail}</span>
+                <span className="text-muted">· {entry.detail}</span>
               </p>
             </li>
           ))}

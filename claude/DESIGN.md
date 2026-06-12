@@ -97,8 +97,8 @@ Rules: third person about Tom; answer only from content; cite the role/company; 
 - [x] PDF in `/public`, download wired up *(2026-06-11)*
 - [x] Responsive pass (mobile-first) *(2026-06-11)*
 - [x] Metadata + OpenGraph tags *(2026-06-11)*
-- [ ] OG image (designed: name, title, one metric) — TODO
-- [ ] Favicon (replace Next default) — TODO
+- [x] OG image — generated at build via `app/opengraph-image.tsx` (next/og), name + title + top 3 metrics *(2026-06-12)*
+- [x] Favicon — TW monogram via `app/icon.tsx` + `app/apple-icon.tsx`; Next default deleted *(2026-06-12)*
 - [x] `npm run build` passes *(2026-06-11)*
 
 ### Phase 2 — Knowledge base (writing, not coding — quality ceiling of the product)
@@ -127,6 +127,8 @@ Rules: third person about Tom; answer only from content; cite the role/company; 
 ---
 
 ## Progress log
+
+- **2026-06-12 (polish)** — OG image, favicon and apple icon generated in code from design tokens (`next/og`), visually verified. Site URL default now `tomweeks.vercel.app` (Tom claimed the cleaner subdomain). Tom's todo items done: hero callouts now 6 metrics in Title Case (Forrester removed — Tom did this himself), em dashes removed from all user-facing strings and banned in the assistant's style rules, page title separator now `|`. Remaining for Tom: Anthropic spend limit, Phase 2 enrichment, mobile/friends QA; custom domain still optional.
 
 - **2026-06-11** — Design agreed (no-RAG architecture, third-person assistant confirmed). Repo previously held only the CV md/pdf. Scaffolded Next.js app at repo root; built Phase 1 static site (hero, CV, download, metadata). Remaining Phase 1: OG image, favicon, Vercel connect + domain (manual steps for Tom).
 - **2026-06-11 (later)** — Phase 2 drafted + Phase 3 built. Drafted all 7 `/content` files strictly from the CV; gaps Tom must fill are marked as `<!-- TOM: -->` HTML comments, which `lib/context.ts` strips before prompting. Built the full chat: `lib/context.ts` (loads/sorts/tags content, module-cached in prod), `lib/prompts.ts` (two system blocks, `cache_control` on the last), `/api/chat` (streams **plain text**, not SSE — simpler, recorded here as a deviation from the diagram's original wording; validates messages ≤1000 chars / ≤20 turns / last 16 sent; best-effort in-memory 10 req/min/IP; `output_config.effort: "medium"`; friendly 500 if `ANTHROPIC_API_KEY` unset), `lib/use-chat.ts`, and `components/chat/` (Chat/Message/PromptChips, markdown via react-markdown, AI disclaimer, turn-limit notice). Added `.env.example`. `npm run build` + lint pass; 400/500 paths smoke-tested against the dev server. Not yet done: live answer + adversarial grounding pass (no API key in dev env), Phase 2 enrichment (Tom), OG image, favicon, Vercel.

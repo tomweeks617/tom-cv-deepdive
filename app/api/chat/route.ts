@@ -67,7 +67,7 @@ export async function POST(req: Request) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
   if (rateLimited(ip)) {
     return Response.json(
-      { error: "Too many requests — please wait a minute and try again." },
+      { error: "Too many requests. Please wait a minute and try again." },
       { status: 429 }
     );
   }
@@ -85,7 +85,7 @@ export async function POST(req: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
     console.error("ANTHROPIC_API_KEY is not set");
     return Response.json(
-      { error: "The assistant isn't configured yet — please try again later." },
+      { error: "The assistant isn't configured yet. Please try again later." },
       { status: 500 }
     );
   }

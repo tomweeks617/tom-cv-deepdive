@@ -42,7 +42,7 @@ export const experience: Role[] = [
   {
     company: "Ocado Retail",
     url: "https://www.ocado.com",
-    descriptor: "Retail media — data products and monetisation",
+    descriptor: "Retail media: data products and monetisation",
     title: "Data Analyst → Senior Data Analyst → Data Engineer",
     period: "Apr 2021 – Apr 2024",
     bullets: [
