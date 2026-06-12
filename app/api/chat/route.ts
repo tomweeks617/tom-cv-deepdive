@@ -1,3 +1,4 @@
+import { createHash } from "crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { loadCvContent } from "@/lib/context";
 import { buildSystemPrompt } from "@/lib/prompts";
@@ -24,6 +25,13 @@ function rateLimited(ip: string): boolean {
   hits.set(ip, recent);
   if (hits.size > 5000) hits.clear(); // crude memory cap
   return false;
+}
+
+// Coarse per-visitor grouping for the question log without storing raw
+// IPs. Not reversible in practice, but not salted either — treat it as
+// pseudonymous, not anonymous.
+function visitorId(ip: string): string {
+  return createHash("sha256").update(ip).digest("hex").slice(0, 12);
 }
 
 type IncomingMessage = { role: "user" | "assistant"; content: string };
@@ -80,6 +88,18 @@ export async function POST(req: Request) {
     );
   }
 
+  // Question log — Vercel captures stdout; a log drain (e.g. Axiom)
+  // retains it. The single most valuable future dataset: what do
+  // recruiters actually ask?
+  console.log(
+    JSON.stringify({
+      event: "chat_question",
+      visitor: visitorId(ip),
+      turn: messages.filter((m) => m.role === "user").length,
+      question: messages[messages.length - 1].content,
+    })
+  );
+
   const client = new Anthropic(); // reads ANTHROPIC_API_KEY
   const system = buildSystemPrompt(await loadCvContent());
   const model = process.env.ANTHROPIC_MODEL ?? "claude-opus-4-8";
@@ -94,6 +114,27 @@ export async function POST(req: Request) {
     system,
     messages: messages.slice(-HISTORY_WINDOW),
   });
+
+  // Fire-and-forget usage log once the answer completes. The cache_*
+  // fields confirm prompt caching is hitting (cache_read > 0 after the
+  // first request). Errors are already logged by the stream handler.
+  stream
+    .finalMessage()
+    .then((msg) =>
+      console.log(
+        JSON.stringify({
+          event: "chat_answer",
+          visitor: visitorId(ip),
+          model: msg.model,
+          stop_reason: msg.stop_reason,
+          input_tokens: msg.usage.input_tokens,
+          output_tokens: msg.usage.output_tokens,
+          cache_read_input_tokens: msg.usage.cache_read_input_tokens,
+          cache_creation_input_tokens: msg.usage.cache_creation_input_tokens,
+        })
+      )
+    )
+    .catch(() => {});
 
   const encoder = new TextEncoder();
   // The SDK emits "end" even after "error", so settle exactly once.
