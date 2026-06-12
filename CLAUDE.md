@@ -26,7 +26,7 @@ Key locations:
 - `components/` — Hero + `cv/` section components; `chat/` arrives in Phase 3
 - `content/` — (Phase 2) markdown knowledge base written *for the model*; deliberately separate from the on-page CV, which is written for skimming recruiters. This duplication is intentional — don't unify them.
 - `claude/DESIGN.md` — design doc and progress tracker
-- `CV/` — original CV source (markdown + PDF); `public/tom_weeks_cv.pdf` is a copy for download
+- `public/tom_weeks_cv.pdf` — the canonical CV artifact (served for download); when Tom updates his CV, replace this file and propagate changes to `config/cv.ts` and `/content`
 
 ## Conventions
 

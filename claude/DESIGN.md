@@ -66,8 +66,9 @@ An interactive version of Tom Weeks' CV. Recruiters and hiring managers can read
   tom_weeks_cv.pdf, og-image.png, favicon
 /claude
   DESIGN.md                  ← this document
-/CV                          ← original CV source (md + pdf)
 ```
+
+(The original `/CV` source folder was removed 2026-06-12 — `public/tom_weeks_cv.pdf` is now the single CV artifact. It survives in git history if ever needed.)
 
 ## System prompt shape (Phase 3)
 
