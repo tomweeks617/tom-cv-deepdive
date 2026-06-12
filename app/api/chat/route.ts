@@ -126,6 +126,10 @@ export async function POST(req: Request) {
       await logEvent({
         event: "chat_answer",
         visitor: visitorId(ip),
+        answer: msg.content
+          .filter((block) => block.type === "text")
+          .map((block) => block.text)
+          .join(""),
         model: msg.model,
         stop_reason: msg.stop_reason,
         input_tokens: msg.usage.input_tokens,
