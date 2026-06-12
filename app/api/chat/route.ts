@@ -1,7 +1,9 @@
 import { createHash } from "crypto";
+import { after } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { loadCvContent } from "@/lib/context";
 import { buildSystemPrompt } from "@/lib/prompts";
+import { logEvent } from "@/lib/log";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -88,11 +90,11 @@ export async function POST(req: Request) {
     );
   }
 
-  // Question log — Vercel captures stdout; a log drain (e.g. Axiom)
-  // retains it. The single most valuable future dataset: what do
-  // recruiters actually ask?
-  console.log(
-    JSON.stringify({
+  // Question log — the single most valuable future dataset: what do
+  // recruiters actually ask? after() defers it past the response so it
+  // adds no latency; Vercel keeps the function alive until it settles.
+  after(() =>
+    logEvent({
       event: "chat_question",
       visitor: visitorId(ip),
       turn: messages.filter((m) => m.role === "user").length,
@@ -115,26 +117,26 @@ export async function POST(req: Request) {
     messages: messages.slice(-HISTORY_WINDOW),
   });
 
-  // Fire-and-forget usage log once the answer completes. The cache_*
-  // fields confirm prompt caching is hitting (cache_read > 0 after the
-  // first request). Errors are already logged by the stream handler.
-  stream
-    .finalMessage()
-    .then((msg) =>
-      console.log(
-        JSON.stringify({
-          event: "chat_answer",
-          visitor: visitorId(ip),
-          model: msg.model,
-          stop_reason: msg.stop_reason,
-          input_tokens: msg.usage.input_tokens,
-          output_tokens: msg.usage.output_tokens,
-          cache_read_input_tokens: msg.usage.cache_read_input_tokens,
-          cache_creation_input_tokens: msg.usage.cache_creation_input_tokens,
-        })
-      )
-    )
-    .catch(() => {});
+  // Usage log once the answer completes. The cache_* fields confirm
+  // prompt caching is hitting (cache_read > 0 after the first request).
+  // Stream errors are already logged by the stream handler below.
+  after(async () => {
+    try {
+      const msg = await stream.finalMessage();
+      await logEvent({
+        event: "chat_answer",
+        visitor: visitorId(ip),
+        model: msg.model,
+        stop_reason: msg.stop_reason,
+        input_tokens: msg.usage.input_tokens,
+        output_tokens: msg.usage.output_tokens,
+        cache_read_input_tokens: msg.usage.cache_read_input_tokens,
+        cache_creation_input_tokens: msg.usage.cache_creation_input_tokens,
+      });
+    } catch {
+      // finalMessage rejects when the stream errored; already logged.
+    }
+  });
 
   const encoder = new TextEncoder();
   // The SDK emits "end" even after "error", so settle exactly once.
