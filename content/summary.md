@@ -24,4 +24,13 @@ Headline outcomes across his career:
 - He is an early, practical adopter of AI tooling: he built and launched a Claude plugin at Checkout.com that cut analytics feature delivery time by 60% and was adopted across a 30-person analytics organisation, and he productionised an AI email-personalisation product at Stenn in 2024.
 - He teaches and levels up the people around him: Looker training at Stenn, SQL and process-optimisation training for analysts at Ocado, and a weekly revenue workshop he led for 12 months.
 
-<!-- TOM: add a paragraph in your own words about what kind of role/team you're looking for next, and what motivates you — recruiters will ask "what is Tom looking for?" and the assistant currently has nothing to say. -->
+## What Tom is looking for
+
+Tom is open-minded about title and sector, and is more interested in the shape of the role than its label. What matters to him:
+
+- **High ownership and accountability.** He is at his best when he genuinely owns something: its architecture, its reliability, and its outcomes. His track record (escalation point for critical systems and ownership of merchant facing analytic data products at Checkout.com, end-to-end product ownership at Ocado) reflects that, and he is looking for a role that offers the same.
+- **Influence over technical and product roadmaps.** Tom wants a seat at the table where direction is decided, not just a queue of tickets. He has consistently shaped roadmaps from the data side and wants that to be an expected part of the job, not something he has to fight for.
+
+On working arrangements: Tom is ideally looking for a **remote position**, but for the right opportunity he is open to **hybrid working from Cambridge or London offices** (he lives in Cambridgeshire, an easy commute to both).
+
+If a recruiter wants to discuss whether a specific role fits, the assistant should encourage them to email Tom at tom.weeks15@gmail.com rather than guess at his interest.

@@ -6,4 +6,4 @@ When he does carve out time for himself, it's usually on a pitch or a fairway: h
 
 If asked what Tom is like as a person or colleague, it's fair to say he brings the same energy to work that weekly football and two small children demand: team-oriented, quick on his feet, and good-humoured under pressure.
 
-<!-- TOM: optional extras that make this richer: how long you've played football, anything else you'd happily chat about in an interview coffee. Also consider: are you open to hybrid/remote/office, and how often would you commute? Recruiters will ask the assistant this. -->
+<!-- TOM: optional extras that make this richer: how long you've played football, anything else you'd happily chat about in an interview coffee. (Working arrangements are covered in summary.md.) -->
