@@ -38,10 +38,16 @@ function visitorId(ip: string): string {
 
 type IncomingMessage = { role: "user" | "assistant"; content: string };
 
-function validateMessages(body: unknown): IncomingMessage[] | null {
-  if (typeof body !== "object" || body === null) return null;
+type ValidationResult =
+  | { ok: true; messages: IncomingMessage[] }
+  | { ok: false; error: string };
+
+function validateMessages(body: unknown): ValidationResult {
+  if (typeof body !== "object" || body === null)
+    return { ok: false, error: "Invalid request." };
   const { messages } = body as { messages?: unknown };
-  if (!Array.isArray(messages) || messages.length === 0) return null;
+  if (!Array.isArray(messages) || messages.length === 0)
+    return { ok: false, error: "Invalid request." };
 
   const valid: IncomingMessage[] = [];
   for (const m of messages) {
@@ -50,17 +56,27 @@ function validateMessages(body: unknown): IncomingMessage[] | null {
       m === null ||
       (m.role !== "user" && m.role !== "assistant") ||
       typeof m.content !== "string" ||
-      m.content.trim().length === 0 ||
-      m.content.length > MAX_MESSAGE_CHARS
+      m.content.trim().length === 0
     ) {
-      return null;
+      return { ok: false, error: "Invalid request." };
+    }
+    if (m.role === "user" && m.content.length > MAX_MESSAGE_CHARS) {
+      return {
+        ok: false,
+        error: `Message too long — please keep it under ${MAX_MESSAGE_CHARS} characters.`,
+      };
     }
     valid.push({ role: m.role, content: m.content });
   }
 
-  if (valid[valid.length - 1].role !== "user") return null;
-  if (valid.filter((m) => m.role === "user").length > MAX_TURNS) return null;
-  return valid;
+  if (valid[valid.length - 1].role !== "user")
+    return { ok: false, error: "Invalid request." };
+  if (valid.filter((m) => m.role === "user").length > MAX_TURNS)
+    return {
+      ok: false,
+      error: `Conversation limit reached (${MAX_TURNS} questions). Please refresh to start a new chat.`,
+    };
+  return { ok: true, messages: valid };
 }
 
 export async function POST(req: Request) {
@@ -72,15 +88,16 @@ export async function POST(req: Request) {
     );
   }
 
-  let messages: IncomingMessage[] | null;
+  let result: ValidationResult;
   try {
-    messages = validateMessages(await req.json());
+    result = validateMessages(await req.json());
   } catch {
-    messages = null;
+    result = { ok: false, error: "Invalid request." };
   }
-  if (!messages) {
-    return Response.json({ error: "Invalid request." }, { status: 400 });
+  if (!result.ok) {
+    return Response.json({ error: result.error }, { status: 400 });
   }
+  const messages = result.messages;
 
   if (!process.env.ANTHROPIC_API_KEY) {
     console.error("ANTHROPIC_API_KEY is not set");
