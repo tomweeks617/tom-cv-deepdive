@@ -1,8 +1,8 @@
 export const site = {
   name: "Tom Weeks",
-  title: "Analytics Engineer",
+  title: "Engineering & Analytics Data Professional",
   tagline:
-    "Analytics Engineer with 7 years of experience building scalable data products, analytics platforms and revenue-generating solutions across fintech and retail.",
+    "Engineering & Analytics Data Professional with 7 years of experience building scalable data products, analytics platforms and revenue-generating solutions across fintech and retail.",
   email: "tom.weeks15@gmail.com",
   cvPdfPath: "/tom_weeks_cv.pdf",
   cvPdfFilename: "Tom_Weeks_CV.pdf",
