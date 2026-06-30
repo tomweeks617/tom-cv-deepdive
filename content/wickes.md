@@ -4,6 +4,10 @@ Wickes is a UK home-improvement retailer. This was Tom's first data role, where 
 
 ## Loyalty scheme analysis (40% adoption increase)
 
-Tom delivered analysis that **challenged existing assumptions** around loyalty sign-ups. Acting on his findings resulted in a **40% increase in loyalty scheme adoption**. Even in his first role, the pattern that defines Tom's career was visible: use data to question how things are done, and convert the answer into a measurable commercial outcome.
+**Situation:** Tom joined Wickes as a graduate data analyst. One of the briefs he was given was to better understand the loyalty programme and its customers. The prevailing belief in the business at the time was that pushing harder for sign-ups — through heavier incentivisation or more aggressive targets — resulted in lower-quality customers who spent less. This assumption was constraining how ambitiously the team set sign-up targets.
 
-<!-- TOM: add what the assumption was, what the data showed, and what changed as a result — plus anything else memorable from Wickes (tools used, team context, why you moved on). -->
+**Task:** As part of his broader loyalty analysis, Tom investigated whether this assumption held up in the data.
+
+**Action:** Tom analysed the relationship between the number of new loyalty sign-ups in a given week and their subsequent spend. He found that while there was indeed a negative correlation — more sign-ups in a week did correlate with slightly lower average spend per new member — the magnitude of the correlation was minor. The data did not support the strength of the assumption that was shaping business decisions.
+
+**Result:** The analysis directly debunked the incumbent theory. In response, the business immediately revised its sign-up targets upward by **40%**. Even at the start of his career, the pattern that runs through Tom's work was visible: use data to test assumptions that are constraining the business, and convert the finding into a concrete decision.
