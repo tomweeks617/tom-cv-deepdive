@@ -2,11 +2,28 @@
 
 Checkout.com is a global payments platform serving enterprise merchants worldwide. Tom joined in February 2025 as Analytics Engineer II and owns the architecture, reliability and roadmap of multiple production analytics products. These products serve two audiences: internal teams and — unusually for an analytics engineering role — **external enterprise merchants**, which raises the bar on reliability, latency and polish.
 
-## Snowflake → BigQuery migration (~40% cost savings)
+## Partition-pruning framework (~25% pipeline cost reduction, £175k savings)
+
+Tom designed and rolled out an **opt-in DML partition-pruning framework for dbt-bigquery** across Checkout.com's analytics engineering estate. The framework resulted in a **~25% reduction in pipeline compute costs** for the project, equivalent to **£175k in annualised savings**. A further **£50k of annual savings** is forecast as adoption spreads.
+
+Key aspects of the framework:
+- **Opt-in DML approach**: targets the most expensive models in the estate — those that cannot be fully partition-pruned with standard incremental strategies — and applies fine-grained DML to allow BigQuery to prune partitions precisely rather than scanning unnecessary data.
+- **Claude plugin for ease of setup**: Tom packaged the framework alongside a Claude plugin that guides engineers through configuring it correctly, lowering the barrier to adoption and reducing the risk of misconfiguration.
+- **Company-wide distribution**: the framework was published internally and distributed across the analytics engineering organisation, with Tom leading knowledge-sharing sessions on partition pruning.
+
+---
+
+## BigQuery table enrichment (250TB / 25bn-row table)
+
+Tom enriched a **250TB / 25bn-row BigQuery table** — one of Checkout.com's largest source datasets — with approximately **~10TB of source-of-truth data**. The enriched table is kept up-to-date via a **bihourly pipeline**, eliminating the need for costly ad-hoc multi-terabyte joins that downstream teams had previously been running. The result was improved data correctness and a significant reduction in the compute cost of downstream queries that had previously had to join in the missing data at query time.
+
+---
+
+## Snowflake → BigQuery migration (~30% cost saving)
 
 ### Why the migration happened
 
-After a long-running Snowflake contract, the commercial costs had become very expensive. Following a POC, BigQuery proved to be considerably cheaper — material savings given that some tables Checkout.com operates are in the **hundreds of terabytes**. At that scale, cost-effective compute and storage is essential. The company-wide migration followed.
+After a long-running Snowflake contract, the commercial costs had become very expensive. Following a POC, BigQuery proved to be considerably cheaper — material savings given that some tables Checkout.com operates are in the **hundreds of terabytes**. At that scale, cost-effective compute and storage is essential. The company-wide migration followed. Tom's team's migrated products contributed to an overall **~30% cost saving** while maintaining platform performance and reliability.
 
 ### Tom's team went first
 
@@ -73,7 +90,7 @@ The approach evolved over time but broadly followed this sequence:
 
 ---
 
-## Claude plugin (60% faster feature delivery)
+## Claude plugin — Imply pipeline automation
 
 ### Context: what Imply is
 
@@ -102,7 +119,7 @@ Tom built a **Claude plugin** — a set of Claude scripts and skills — that au
 - **Validating Imply tables against BigQuery** tables.
 - **Estimating the cost of pipeline changes** — particularly important given these are among the most expensive models in the estate.
 
-Tom shared this as a plugin across the entire analytics team. The result was a **~60% reduction in new feature delivery time**, with team members independently reporting similar savings.
+Tom shared this as a plugin across the entire analytics team, giving analytics engineers a tool to build and extend the Imply pipeline without needing to deeply understand the underlying complexity.
 
 ---
 
@@ -115,6 +132,8 @@ Tom designed and delivered scalable analytics pipelines that increased merchant-
 ## Apache Druid partnership ownership
 
 Tom is the technical owner and subject-matter expert for Checkout.com's partnership with Imply (the Apache Druid service provider). He drives adoption internally, manages vendor engagement, and is accountable for production reliability of the Druid-backed systems. Druid underpins the low-latency analytics serving layer for the merchant-facing dashboard.
+
+Tom is currently leading a **proof of concept evaluating migration from Imply/Druid to Google BI Engine** as an alternative serving layer. The goals are to improve reliability and increase engineering velocity — Google BI Engine's tighter integration with BigQuery would reduce the operational overhead that currently comes with managing a separate Druid cluster.
 
 ---
 

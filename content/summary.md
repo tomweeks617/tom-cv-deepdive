@@ -5,7 +5,8 @@ Tom Weeks is an Analytics Engineer with 7 years of experience building scalable 
 Headline outcomes across his career:
 
 - **£1m+ annualised revenue impact** — driven primarily by a weekly ad-revenue workshop he led at Ocado Retail that grew weekly ad revenue 420% over 12 months.
-- **~40% warehouse cost reduction** — by leading the migration of production data products from Snowflake to BigQuery at Checkout.com.
+- **~25% pipeline cost reduction (£175k annually)** — by designing and rolling out an opt-in DML partition-pruning framework at Checkout.com, packaged with a Claude plugin for ease of adoption across the company. An additional **£50k** of annual savings is forecast.
+- **~30% infrastructure cost saving** — by leading the migration of multiple production data products from Snowflake to BigQuery at Checkout.com.
 - **2,000+ hours of operational effort automated annually** — through an ad-tech platform API integration he owned end-to-end at Ocado Retail.
 - **£250,000/year in new first-party data monetisation** — by leading a demand-side-platform integration at Ocado Retail.
 - Contributed to Checkout.com's **industry-leading 5/5 Forrester Wave score** for "Data, Analytics & Insights" (2026 Q1) through enhanced merchant analytics capabilities.
@@ -21,7 +22,7 @@ Headline outcomes across his career:
 
 - He works at the intersection of engineering and commercial impact: most of his projects have a revenue, cost or efficiency number attached because he chooses problems that move those numbers.
 - He has repeatedly been the trusted owner of business-critical systems — including being the sole escalation point on a 24/7 support rota for critical analytics infrastructure at Checkout.com.
-- He is an early, practical adopter of AI tooling: he built and launched a Claude plugin at Checkout.com that cut analytics feature delivery time by 60% and was adopted across a 30-person analytics organisation, and he productionised an AI email-personalisation product at Stenn in 2024.
+- He is an early, practical adopter of AI tooling: he has built multiple Claude plugins at Checkout.com — one automating the Imply analytics pipeline workflow and one for analytics engineering standards packaged alongside the partition-pruning framework — and he productionised an AI email-personalisation product at Stenn in 2024.
 - He teaches and levels up the people around him: Looker training at Stenn, SQL and process-optimisation training for analysts at Ocado, and a weekly revenue workshop he led for 12 months.
 
 ## What Tom is looking for

@@ -4,15 +4,16 @@ export const site = {
   tagline:
     "Engineering & Analytics Data Professional with 7 years of experience building scalable data products, analytics platforms and revenue-generating solutions across fintech and retail.",
   email: "tom.weeks15@gmail.com",
+  linkedin: "https://www.linkedin.com/in/tom-weeks-4a5109189",
   cvPdfPath: "/tom_weeks_cv.pdf",
   cvPdfFilename: "Tom_Weeks_CV.pdf",
   highlights: [
     { value: "£1m+", label: "Annualised Revenue Impact" },
-    { value: "~40%", label: "Warehouse Cost Reduction" },
+    { value: "£175k", label: "Pipeline Cost Savings" },
     { value: "2,000+", label: "Hours Automated Annually" },
     { value: "£250k", label: "First-Party Data Monetisation" },
     { value: "420%", label: "Ad Revenue Growth" },
-    { value: "60%", label: "Faster Feature Delivery" },
+    { value: "5×", label: "Merchant Insight Coverage" },
   ],
 } as const;
 

@@ -5,7 +5,7 @@ This file describes Tom's technical toolkit and where each skill was used in pra
 ## Data warehouses
 
 - **Snowflake** — primary warehouse at Stenn Technologies and at Checkout.com before the BigQuery migration; Tom was responsible for the migration of high volume multiple production data products off it as well as continued development and maintaince.
-- **BigQuery** — migration target at Checkout.com. Tom led the Snowflake → BigQuery migration of dimensional models, merchant-facing analytics datasets and lower-environment infrastructure, contributing to ~40% cost savings at equal performance and reliability. Also used at Ocado Retail (GCP shop).
+- **BigQuery** — primary warehouse at Checkout.com (post-migration). Tom led the Snowflake → BigQuery migration of multiple production data products, contributing to ~30% cost savings at equal performance and reliability. Also designed and rolled out a partition-pruning framework for dbt-bigquery that reduced pipeline compute costs by ~25% (£175k annually). Also used at Ocado Retail (GCP shop).
 
 ## Analytics engineering
 
@@ -40,7 +40,7 @@ This file describes Tom's technical toolkit and where each skill was used in pra
 
 ## AI tools
 
-- **Claude** — Tom built and launched a Claude plugin for merchant-facing analytics data products at Checkout.com; it reduced analytics feature delivery time by 60% and was adopted across a 30-person analytics organisation.
+- **Claude** — Tom has built multiple Claude plugins at Checkout.com: (1) a plugin automating the complex Imply/Druid pipeline workflow, enabling analytics engineers to build and extend the pipeline without deep Druid expertise; (2) a plugin for analytics engineering standards, packaged alongside the partition-pruning framework to guide engineers through correct setup and configuration. Both were distributed across the analytics engineering organisation.
 - **Cursor** — day-to-day AI-assisted engineering.
 - At Stenn (2024), Tom developed and productionised an early AI marketing product that personalised outbound emails, lifting click-through rate by 35%.
 

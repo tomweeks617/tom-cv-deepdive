@@ -16,13 +16,13 @@ export const experience: Role[] = [
     title: "Analytics Engineer II",
     period: "Feb 2025 – Present",
     bullets: [
-      "Own the architecture, reliability and roadmap of multiple production analytics products serving internal teams and enterprise merchants.",
-      "Led the migration of production data products from Snowflake to BigQuery (including dimensional models, merchant-facing datasets and lower environments), contributing to **~40% cost savings** at equal performance and reliability.",
-      "Developed and launched a Claude plugin for merchant-facing analytics products that cut feature delivery time by **60%**, adopted across a **30-person analytics organisation**.",
-      "Designed scalable analytics pipelines that increased merchant-facing insight coverage **5×**, expanding low-latency self-service reporting for enterprise customers.",
-      "Technical owner and subject-matter expert for Checkout.com's Apache Druid partnership, driving adoption, vendor engagement and production reliability.",
-      "Played a key role in Checkout.com's industry-leading **5/5 Forrester Wave** score for Data, Analytics & Insights (2026 Q1).",
-      "Sole escalation point on a **24/7 support rota** for critical analytics infrastructure, including incident management.",
+      "Designed and rolled out an opt-in DML partition-pruning framework for dbt-bigquery resulting in a **~25% reduction** in pipeline cost, equivalent to **£175k** annualised savings. Packaged the framework alongside a Claude plugin for ease of setup and distributed company-wide. Forecasting an additional **£50k** of annual savings.",
+      "Enriched a **250TB / 25bn-row** BigQuery table with **~10TB** of source-of-truth data and kept it up-to-date via a bihourly pipeline, eliminating costly ad-hoc multi-TB joins while improving data correctness.",
+      "Technical owner and SME for Checkout.com's Apache Druid vendor partnership, acting as the primary escalation point for incidents; now leading a proof of concept evaluating migration to Google BI Engine to improve reliability and increase engineering velocity.",
+      "Designed and delivered scalable analytics pipelines that increased merchant-facing insight coverage by **5×**, significantly expanding low-latency self-service reporting capabilities for enterprise customers — contributing to Checkout.com's **5/5 Forrester Wave** score for 'Data, Analytics & Insights' (2026 Q1).",
+      "Own the pipelines and reliability of multiple production data products serving internal teams and enterprise merchants, including **24/7 on-call** escalation for business-critical models.",
+      "Migrated multiple production data products from Snowflake to BigQuery — alternative payment methods, vault instrument, authentication, merchant-facing analytics datasets, dimensional models and lower-environment infrastructure — contributing to a **~30% cost saving** while maintaining platform performance and reliability.",
+      "Shaped team practices beyond own delivery: built a Claude plugin for analytics engineering standards, led knowledge-sharing sessions on partition pruning and Imply/Druid, and interviewed AE candidates.",
     ],
   },
   {
@@ -33,10 +33,11 @@ export const experience: Role[] = [
     period: "Apr 2024 – Dec 2024",
     note: "Role concluded following company administration.",
     bullets: [
-      "Designed and built attribution models with Marketing and Revenue Operations that enabled optimisation of a **$6m paid-search budget**.",
-      "Developed and productionised an early AI marketing product personalising outbound emails, lifting click-through rate by **35%**.",
-      "Owned marketing data pipelines end to end: ELT, reverse ETL, data quality and governance.",
-      "Refactored complex dbt models to best practice with comprehensive testing; built Looker explores and dashboards and ran training so teams could self-serve analytics.",
+      "Worked cross-functionally with Marketing and Revenue Operations teams to design and build attribution models that enabled optimisation of a **$6 million paid-search budget**.",
+      "Developed and productionised an early AI marketing product to personalise outbound emails, lifting click-through rate by **35%**.",
+      "Owned Marketing data pipelines end to end: ELT, reverse ETL, data quality management and data governance.",
+      "Refactored complex dbt models to adopt best practices and introduced more comprehensive dbt testing.",
+      "Built and maintained Looker explores and dashboards; conducted Looker training sessions to enable business-wide self-serve analytics.",
     ],
   },
   {
@@ -46,13 +47,15 @@ export const experience: Role[] = [
     title: "Data Analyst → Senior Data Analyst → Data Engineer",
     period: "Apr 2021 – Apr 2024",
     bullets: [
-      "Owned the integration of an ad-tech platform's API (Python, JavaScript, SQL), saving **2,000+ hours** of admin work annually and removing costly human error.",
+      "Owned from conception to execution the integration of an ad-tech platform's API (Python, JavaScript, SQL), saving **2,000+ hours** of admin work annually and removing costly human errors.",
+      "Owned the development of automated personalised supplier communication technology, resulting in a **15% increase in media revenue** and overwhelmingly positive supplier feedback.",
+      "Priced media assets generating **£50m** in annual revenue; analysed pricing risk and co-presented risk mitigation solutions to senior leadership, shaping the long-term media pricing strategy.",
+      "Standardised the media booking process and built document-scraping technology underpinning reliable reporting of **£100m** in media revenue.",
+      "Devised an improved featured-product algorithm that resulted in a **10% increase** in ad revenue (approximately **£125,000/year**).",
       "Led a demand-side-platform integration, engineering pipelines that enabled first-party data monetisation worth **£250k annually**.",
       "Led a weekly workshop that grew weekly ad revenue **420%** over 12 months, equating to roughly **£1m** of incremental revenue at run rate.",
-      "Priced media assets generating **£50m** in annual revenue and co-presented risk mitigation to senior leadership, shaping long-term pricing strategy.",
-      "Built automated supplier campaign notifications that lifted media revenue **15%**; improved the featured-product algorithm for a further **10%** (~£125k/year).",
-      "Standardised the media booking process and built document-scraping technology underpinning reliable reporting of **£100m** in media revenue.",
-      "Acted as SME for media data and trained analysts in advanced SQL and process optimisation.",
+      "Established and managed critical data feeds pivotal to media monetisation strategy.",
+      "Led training sessions for analysts in advanced SQL and process optimisation, fostering a culture of continuous improvement.",
     ],
   },
   {
@@ -68,7 +71,7 @@ export const experience: Role[] = [
 ];
 
 export const skillGroups: { label: string; skills: string[] }[] = [
-  { label: "Data Warehouses", skills: ["Snowflake", "BigQuery"] },
+  { label: "Data Warehouse", skills: ["Snowflake", "BigQuery"] },
   {
     label: "Analytics Engineering",
     skills: [
@@ -87,9 +90,8 @@ export const skillGroups: { label: string; skills: string[] }[] = [
   },
   { label: "Programming", skills: ["Python", "JavaScript"] },
   { label: "BI & Reporting", skills: ["Looker", "Tableau"] },
-  { label: "Cloud & Infrastructure", skills: ["GCP", "AWS", "Terraform"] },
+  { label: "Cloud & Infrastructure", skills: ["GCP", "AWS"] },
   { label: "Orchestration & DevOps", skills: ["Airflow", "GitHub", "CI/CD"] },
-  { label: "AI Tools", skills: ["Claude", "Cursor"] },
   { label: "Streaming", skills: ["Apache Flink"] },
 ];
 
