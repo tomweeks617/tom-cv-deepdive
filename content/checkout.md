@@ -206,7 +206,39 @@ Tom designed and delivered scalable analytics pipelines that increased merchant-
 Tom is the technical owner and subject-matter expert for Checkout.com's partnership with Imply (the Apache Druid service provider). He drives adoption internally, manages vendor engagement, and is accountable for production reliability of the Druid-backed systems. Druid underpins the low-latency analytics serving layer for the merchant-facing dashboard.
 
 Situation:
-Our proprietry me
+Our proprietry merhcnat facing dashboard contains Analytics pages and a 'Looker style explorer'. The expectations from our clients is that query latency is very low for these insights and we aim that any element in these pages should have a sub-second response time. This requires a performant query engine; for this we have use Imply, an Apache Druid service provider.
+
+Due to our high data volumes, we mostly serve aggregated data via Imply. To do this, we have a pipelne that aggregates our data products to an hourly grain, loads the batch to GCS, data syncs to S3, before calling the Imply API to load the batch of data from S3 to Imply. (GCS to S3 is necessary as Imply does not support GCS/BigQuery as a data source). The complication is that Imply does not allow for records to be updated; we can either append data or rewrite entire partitons.
+
+Rewriting entire partitions is not feesible due to large data volumes so we append data. The challenge comes as we when payments state change, we need to negate a record that exists in Imply then reinsert the updated aggregation into Imply. Imply then compacts on their end.
+
+This negation leads itself to costly dbt models and a highly fragile data pipeline. As this data is merchant-facing, it has 24/7 support. 
+
+I have acted as the technical owner of this pipeline, it's developments, and the relationship with Imply. This has entailed designing and delivering new models/entensions of existing models to deliver more insights on Dashboard, improving the robustness of the pipeline, montioring the ingestion and query performance of Imply, rasing support tickets, and holding monthly touch points with Imply. More recently, this has involved running a vendor analysis and I have began the work to PoC BI Engine as a replacement.
+
+Challenges:
+1. As mentioned above, the dbt models required to perform these negations are expensive. They require long lookback periods, complex self-joins and unnesting of complex data structures to run.
+2. The pipeline is fragile. Many stages of the pipeline including loading data into Imply via the API is not idempotent so transient errors need to be investigated seriously.
+3. Developments require a lot of engineering effort. It requires a lot of analytical engineering effort to get a pipeline populating data in Imply, a lot of montioring, software engineering effort to connect the write against Imply to Dashboard, and a lot of observability/monitoring in place.
+4. Imply has some fundamental flaws:
+i) Couples compute and storage resources meaning that new data releases run on the same compute as production.
+ii) Does not support GCS or BigQuery as data sources which requires us to data sync to S3 incuring a egress cost while doing this.
+iii) Imply does not support updates meaning that we need to run a convoluted and fragile append-only pipeline.
+iv) Query performance can degrade during peak Dashboard usage hours, while running tests against production data, if merchants are runnnig particularly heavy queries.
+
+Actions for each challenge:
+1. I optimsed our most expensive dbt model that powered the Imply pipeline by first running an investigation into opportunities to optimise these models and presenting back to the team a list of 6 optimisations and the trade-off for each one. These included using Numeric data types instead of bignumeric, pre-aggregating data, applying filters to exclude the long-tail of late-arriving data at the cost of accuracy (note, as this is aggregated data, total precision was less important). The only recommendation that did not get applied was to replace a JSON object with repeated STRUCTS in BigQuery. This would have likely saved another $15k a year but would have required significant upstream refactoring.
+
+Result: decreased costs by ~40% (£40k/year)
+
+2. To improve the robustness of the pipeline I did the followiing:
+i) Documented the pipeline and provided incident recovery documentation guidence for both humans and for AI agents to utilise.
+ii) Our alignment tests between Imply and our Data Products of fail with false-positive alerts. THis can be very annoying for out of hours support. These alignment failures often happen due to a timing issue where our first run of the day waits for fx rates to populate before starting which can cause delays between when the data product updates and when the alignment test runs against Imply. To fix this, I added a method to query the data product using timetravel at the point when the last batch pipeline completed. This completely removed false-positive alterting from alignment tests.
+iii) Another cause of incidents were transient API (5xx) error when initiating a new batch job. Sometimes, the batch would have been loaded into Imply and sometimes it would have failed but due to the non-idempotent nature of append-only batches, we could not blindly allow for auto-matic retires so I routed retires though logic that checked whether a recent batch had or was running. This significant reduced alerting.
+3. I developed a Claude Plugin that allowed users to quickly build the dbt models wiht complext negation logic in and would comphrensively test these models before production release. This speed up develepoment hugely, and allowed for other team member to contribute to merchant Dashboard developments without needing to thoroughly and completely undertand Imply and the pipeline.
+4. These are fundamental flaws in the vendor that we use. Some are being addressed in their roadmap, others aren't. I have been a strong advocate for exploring alternative vendors and recently performded a vendor landscape analysis of other possible vendors, after presenting this to stakeholders, we have chosen to PoC BI Engine and I am currently leading this PoC.
+
+
 
 Tom is currently leading a **proof of concept evaluating migration from Imply/Druid to Google BI Engine** as an alternative serving layer. The goals are to improve reliability and increase engineering velocity — Google BI Engine's tighter integration with BigQuery would reduce the operational overhead that currently comes with managing a separate Druid cluster.
 
