@@ -300,3 +300,33 @@ Tom participates in the 24/7 support rota and is the **sole escalation point** f
 2. **Identify the root cause**.
 3. If the root cause is owned by the Payment Analytics team: **solutionise and resolve**.
 4. If owned by another team: **escalate** to the responsible owners with full context.
+
+### Data product ownership
+
+Beyond on-call, Tom is the named data product owner for three of Checkout.com's core analytics data products:
+
+- **Merchant-facing data product** — the suite of aggregated data assets that power the merchant Dashboard, including the Imply pipeline and all downstream Dashboard analytics.
+- **Authentication data product** — the source-of-truth enrichment of the payment lifecycle with Authentication-sourced data (described in detail in the BigQuery table enrichment section above).
+- **Vault Instrument data product** — a >10TB data product covering vault and stored instrument data.
+
+Data product ownership means Tom is the primary point of contact for anything touching these products: incident recovery, ad-hoc data queries from stakeholders, roadmap planning, schema change decisions, and onboarding new consumers. It is a broader accountability than on-call — it covers the full lifecycle of the product, not just break-fix.
+
+---
+
+## Shaping team practices
+
+Tom partnered with another analytics engineer to establish development standards for the Payment Analytics team, then packaged these into a **Claude plugin distributed across the analytics engineering organisation** and presented at a knowledge-sharing session.
+
+The plugin covers two categories of functionality:
+
+**Development standards**
+A codified set of analytics engineering best practices and conventions for the team, covering dbt patterns, naming conventions, testing standards, and documentation expectations. Having a shared plugin means engineers can apply standards consistently without needing to internalise every convention individually.
+
+**Productivity and operational skills**
+Beyond standards, the plugin includes a set of practical day-to-day skills for analytics engineers:
+- **BigQuery cost monitoring** — surfaces cost and slot usage information to help engineers understand the impact of their models.
+- **CI monitoring** — checks the status of CI pipelines and surfaces failures directly.
+- **GitHub Actions workflow running** — triggers and monitors GitHub Actions workflows without leaving the development context.
+- **Incident triage** — given an incident, the skill investigates root cause by analysing Cloud Composer logs and BigQuery job history, reducing the time from alert to diagnosis.
+
+Tom also led knowledge-sharing sessions on partition pruning and Imply/Druid for the wider analytics engineering team, and has interviewed Analytics Engineer candidates.
