@@ -37,6 +37,9 @@ yarn-error.log*
 # personal scratch notes
 /notes
 
+# claude code
+.claude
+
 # vercel
 .vercel
 

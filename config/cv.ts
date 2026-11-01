@@ -34,7 +34,7 @@ export const experience: Role[] = [
     note: "Role concluded following company administration.",
     bullets: [
       "Worked cross-functionally with Marketing and Revenue Operations teams to design and build attribution models that enabled optimisation of a **$6 million paid-search budget**.",
-      "Developed and productionised an early AI marketing product to personalise outbound emails, lifting click-through rate by **35%**.",
+      "Developed and trialled an early AI marketing product to personalise outbound emails, lifting click-through rate by **35%**.",
       "Owned Marketing data pipelines end to end: ELT, reverse ETL, data quality management and data governance.",
       "Refactored complex dbt models to adopt best practices and introduced more comprehensive dbt testing.",
       "Built and maintained Looker explores and dashboards; conducted Looker training sessions to enable business-wide self-serve analytics.",
