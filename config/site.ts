@@ -13,7 +13,7 @@ export const site = {
     { value: "2,000+", label: "Hours Automated Annually" },
     { value: "£250k", label: "First-Party Data Monetisation" },
     { value: "420%", label: "Ad Revenue Growth" },
-    { value: "5×", label: "Merchant Insight Coverage" },
+    { value: ">250TB", label: "Scale of Data Pipelines Managed" },
   ],
 } as const;
 
