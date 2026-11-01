@@ -4,8 +4,8 @@ This file describes Tom's technical toolkit and where each skill was used in pra
 
 ## Data warehouses
 
-- **Snowflake** — primary warehouse at Stenn Technologies and at Checkout.com before the BigQuery migration; Tom was responsible for the migration of high volume multiple production data products off it as well as continued development and maintaince. 
-- **BigQuery** — primary warehouse at Checkout.com (post-migration), Ocado and Wickes. Tom migrated multiple critical data products from Snowflake → BigQuery, contributing to ~30% cost savings at equal performance and reliability. Also designed and rolled out a partition-pruning framework (an extension of the incremental_precidates) for dbt-bigquery that reduced pipeline compute costs by ~25% (£175k annually). 
+- **Snowflake** — primary warehouse at Stenn Technologies and at Checkout.com before the BigQuery migration; Tom was responsible for the migration of high volume multiple production data products off it as well as continued development and maintenance. 
+- **BigQuery** — primary warehouse at Checkout.com (post-migration), Ocado and Wickes. Tom migrated multiple critical data products from Snowflake → BigQuery, contributing to ~30% cost savings at equal performance and reliability. Also designed and rolled out a partition-pruning framework (an extension of the incremental_predicates) for dbt-bigquery that reduced pipeline compute costs by ~25% (£175k annually). 
 
 ## Analytics engineering
 

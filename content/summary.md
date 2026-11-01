@@ -22,7 +22,7 @@ Headline outcomes across his career:
 
 - He works at the intersection of engineering and commercial impact: most of his projects have a revenue, cost or efficiency number attached because he chooses problems that move those numbers.
 - He has repeatedly been the trusted owner of business-critical systems — including being the sole escalation point on a 24/7 support rota for critical analytics infrastructure at Checkout.com.
-- He is an early, practical adopter of AI tooling: he has built multiple Claude plugins at Checkout.com — one automating the Imply analytics pipeline workflow and one for analytics engineering standards packaged alongside the partition-pruning framework — and he productionised an AI email-personalisation product at Stenn in 2024.
+- He is an early, practical adopter of AI tooling: he has built multiple Claude plugins at Checkout.com — one automating the Imply analytics pipeline workflow and one for analytics engineering standards packaged alongside the partition-pruning framework — and he trialled an AI email-personalisation product at Stenn in 2024.
 - He teaches and levels up the people around him: Looker training at Stenn, SQL and process-optimisation training for analysts at Ocado, and a weekly revenue workshop he led for 12 months.
 
 ## What Tom is looking for
