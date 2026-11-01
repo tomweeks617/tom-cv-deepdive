@@ -46,8 +46,6 @@ Defined in `.env.example`; copy to `.env.local` for local dev. Set the same vars
 - Tom's phone number stays off the webpage (email only); it lives only in the PDF.
 - Styling uses CSS custom-property tokens defined in `app/globals.css` (`--accent`, `--muted`, etc.) mapped into Tailwind via `@theme inline` — use the token classes (`text-accent`, `border-border`, …), not raw colours.
 - Model/config values (e.g. `ANTHROPIC_MODEL`) come from env vars, never hardcoded.
-- `<!-- TOM: … -->` HTML comments in `/content/*.md` are editorial TODOs for Tom; `lib/context.ts` strips them before they reach the model. Don't remove them programmatically except via that stripping logic.
-
 ## Known gotchas
 
 - **`output_config.effort: "medium"` is Opus-only.** Haiku and Sonnet return a 400 if it's included. The route guards this with `model.includes("opus")`.

@@ -44,12 +44,7 @@ export function Chat() {
       </p>
 
       <div className="mt-6 overflow-hidden rounded-xl border border-border bg-background">
-        {messages.length === 0 ? (
-          <div className="p-4 sm:p-5">
-            <p className="mb-3 text-sm text-muted">Try one of these:</p>
-            <PromptChips onSelect={submit} disabled={isLoading} />
-          </div>
-        ) : (
+        {messages.length > 0 && (
           <div
             ref={scrollRef}
             className="max-h-[28rem] space-y-4 overflow-y-auto p-4 sm:p-5"
@@ -59,6 +54,13 @@ export function Chat() {
             ))}
           </div>
         )}
+
+        <div className={messages.length === 0 ? "p-4 sm:p-5" : "border-t border-border p-3 sm:p-4"}>
+          {messages.length === 0 && (
+            <p className="mb-3 text-sm text-muted">Try one of these:</p>
+          )}
+          <PromptChips onSelect={submit} disabled={isLoading} />
+        </div>
 
         {error && (
           <p className="border-t border-border px-4 py-3 text-sm text-red-600">

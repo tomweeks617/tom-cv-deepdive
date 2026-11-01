@@ -1,8 +1,8 @@
 export const site = {
   name: "Tom Weeks",
-  title: "Engineering & Analytics Data Professional",
+  title: "Data Engineering & Analytics Professional",
   tagline:
-    "Engineering & Analytics Data Professional with 7 years of experience building scalable data products, analytics platforms and revenue-generating solutions across fintech and retail.",
+    "Data Engineering & Analytics Professional with 7 years of experience building scalable data products, analytics platforms and revenue-generating solutions across fintech and retail.",
   email: "tom.weeks15@gmail.com",
   linkedin: "https://www.linkedin.com/in/tom-weeks-4a5109189",
   cvPdfPath: "/tom_weeks_cv.pdf",
@@ -28,4 +28,5 @@ export const exampleQuestions: string[] = [
   "Tell me about a time Tom pushed back on a stakeholder brief",
   "How has Tom used AI tooling to improve his team's engineering output?",
   "Walk me through Tom's career progression and what connects each move",
+  "What kind of role is Tom looking for?",
 ];

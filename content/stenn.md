@@ -32,7 +32,8 @@ Throughout, Tom ran regular update sessions with all relevant teams and delivere
 
 ## Pipeline ownership and dbt craftsmanship
 
-- Owned Marketing data pipelines end to end: ELT, reverse ETL, data quality management and data governance.
+- Owned Marketing data pipelines end to end: ELT via Fivetran into Snowflake, reverse ETL via Hightouch, data quality management and data governance.
+- Snowflake was the primary data warehouse; all analytics engineering work was done in dbt on top of Snowflake.
 - Refactored complex dbt models to adopt best practices and introduced more comprehensive dbt testing — inherited models were made maintainable and trustworthy.
 
 ## Enabling self-serve analytics

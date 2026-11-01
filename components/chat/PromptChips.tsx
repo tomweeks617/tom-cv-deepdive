@@ -8,14 +8,14 @@ export function PromptChips({
   disabled: boolean;
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex gap-2 overflow-x-auto pb-1">
       {exampleQuestions.map((q) => (
         <button
           key={q}
           type="button"
           disabled={disabled}
           onClick={() => onSelect(q)}
-          className="rounded-full border border-border bg-card px-3.5 py-1.5 text-left text-sm text-muted transition-colors hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
+          className="shrink-0 rounded-full border border-border bg-card px-3.5 py-1.5 text-left text-sm text-muted transition-colors hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
         >
           {q}
         </button>

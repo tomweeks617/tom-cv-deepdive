@@ -104,7 +104,7 @@ Rules: third person about Tom; answer only from content; cite the role/company; 
 
 ### Phase 2 — Knowledge base (writing, not coding — quality ceiling of the product)
 - [x] Draft all 7 `/content/*.md` files from the CV (facts only, nothing invented) *(2026-06-11)*
-- [ ] **Tom:** enrich toward the target questions — each file contains `<!-- TOM: ... -->` comments marking exactly what's missing (BigQuery migration story, £1m workshop mechanics, Claude plugin details, what he's looking for next…). Comments are stripped before reaching the model.
+- [ ] **Tom:** enrich toward the target questions — each file contains
 
 ### Phase 3 — Chat
 - [x] `lib/context.ts` + `lib/prompts.ts` (system prompt assembly) *(2026-06-11)*
