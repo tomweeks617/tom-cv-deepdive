@@ -23,7 +23,7 @@ The immediate thought was to use dbt's built-in solution, `incremental_predicate
 
 The solution was therefore a custom one: intercept the dbt merge command between when the temporary table is built and when the merge operation runs, resolve the distinct partition field values, and inject them as constants into the merge SQL.
 
-This was achieved by overriding the dbt-bigquery adapter's `bq_generate_incremental_merge_build_sql` macro by redefining it in our local dbt project. The new macro mirrored dbt's original but ran a series of macros to query the temporary table for its distinct partition values and compile them as constants into the merge job.
+This was achieved by overriding the dbt-bigquery adapter's `bq_generate_incremental_merge_build_sql` macro ([source](https://github.com/dbt-labs/dbt-bigquery/blob/0995665e490cdee9c408d26aac8e1c19fefaebe0/dbt/include/bigquery/macros/materializations/incremental.sql#L62)) by redefining it in our local dbt project. The new macro mirrored dbt's original but ran a series of macros to query the temporary table for its distinct partition values and compile them as constants into the merge job.
 
 Once set up, models require a one-line config change to opt in. After extending this framework to cover update and delete operations, I packaged it and shared it with other teams, accompanied by a Claude plugin that sets up the macro in their own project, installs the package, and identifies candidate models.
 
