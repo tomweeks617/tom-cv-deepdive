@@ -23,7 +23,7 @@ export const exampleQuestions: string[] = [
   "Tell me about the DML partition-pruning framework that led to £175k of savings",
   "Explain the Apache Druid pipeline Tom owns and why he's leading a migration away from it",
   "What are the most complex dbt models Tom has built and why were they difficult?",
-  "What's the biggest commercial impact Tom has had in his career?",
+  "What's the greatest commercial impact Tom has had in his career?",
   "How did Tom grow Ocado's ad revenue by 420% in 12 months?",
   "Tell me about a time Tom pushed back on a stakeholder brief",
   "How has Tom used AI tooling to improve his team's engineering output?",
