@@ -20,11 +20,12 @@ export const site = {
 // Clickable example prompts for the "Ask about Tom" chat (Phase 3).
 // Edit freely — the UI renders whatever is listed here.
 export const exampleQuestions: string[] = [
-  "Explain the £1m revenue impact Tom delivered",
-  "How competent is Tom using dbt?",
-  "Tell me about the BigQuery migration at Checkout.com",
-  "Tell me about the Claude plugin Tom built",
-  "How did Tom create a £250k/year revenue stream at Ocado?",
-  "How did Tom automate 2,000+ hours of work a year?",
-  "Tell me about Tom as a person",
+  "Tell me about the DML partition-pruning framework that led to £175k of savings",
+  "Explain the Apache Druid pipeline Tom owns and why he's leading a migration away from it",
+  "What are the most complex dbt models Tom has built and why were they difficult?",
+  "What's the biggest commercial impact Tom has had in his career?",
+  "How did Tom grow Ocado's ad revenue by 420% in 12 months?",
+  "Tell me about a time Tom pushed back on a stakeholder brief",
+  "How has Tom used AI tooling to improve his team's engineering output?",
+  "Walk me through Tom's career progression and what connects each move",
 ];
